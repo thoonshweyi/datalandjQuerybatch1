@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>getting element</title>
+    </head>
+    <body>
+        
+        <h1 id="headingone">Hello Myanmar</h1>
+        <h1 id="headingtwo">Hello Thailand</h1>
+        <h1>Hello Vietnum</h1>
+        <h1>Hello Indonesia</h1>
+        <h1>Hello Cambodia</h1>
+
+
+
+        <script src="../libs/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+
+                console.log($('#headingone'));
+
+                console.log($('h1'));
+
+                console.log($('h1')[1])
+
+                //eq()
+                //eq method return element as jQuery object
+                console.log($('h1').eq(1));
+                $('h1').eq(1).css({
+                    'background-color' : 'lightskyblue',
+                    'color' : '#fff'
+                });
+
+                //!!not woking (undefined)
+                // console.log($('h1').id);
+
+                // _______________________________________________
+                //get()
+                //get method return element as DOM Element
+                console.log($('h1').get(2));
+
+                // !!not working
+                // $('h1').get(2).css({
+                //     'background-color' : 'lightskyblue',
+                //     'color' : '#fff'
+                // });
+            });
+        </script>
+    </body>
+</html>

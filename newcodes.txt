@@ -1,0 +1,6 @@
+HTML
+<input type = 'image' src = './img/' />
+
+CSS
+accent-color : 'red'; //for radio,checkbox color
+resize : none | horizontal | vetical; // for textarea resize
