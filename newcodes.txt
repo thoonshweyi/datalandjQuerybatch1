@@ -4,3 +4,14 @@ HTML
 CSS
 accent-color : 'red'; //for radio,checkbox color
 resize : none | horizontal | vetical; // for textarea resize
+
+border-collapse: collapse; // at table for tr border-bottom 
+'display' : 'table-row' // for tr show
+
+JS
+navigator.clipboard.writeText(getinput.val()); //for copy clipboard
+
+JQuery
+$('#datatable tr').filter(function(){
+	$(this).toggle($(this).children(':eq(0)').text().toLowerCase().indexOf(getinput) > -1);
+});
