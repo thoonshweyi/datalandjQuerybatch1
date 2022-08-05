@@ -1,106 +1,158 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Todo Jobs</title>
-        <style type="text/css">
-            body{
-                height: 100vh;
-                background: linear-gradient(to right, rgb(78, 84, 200), rgb(143, 148, 251));
-                font-family: sans-serif;
 
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-            .container{
-                background-color: #eee;
-                padding: 30px;
-            }
-            h2{
-                text-align: center;
-                color: darkblue;
-                padding: 0;
-                margin: 0;
-                margin-bottom: 10px;
-            }
-            .form-group{
-                display: flex;
-            }
-            .form-control{
-                color: blue;
-                font-size: 16px;
-                padding: 5px;
+<head>
+    <title>Todo Jobs</title>
+    <style type="text/css">
+        body {
+            height: 100vh;
+            background: linear-gradient(to right, rgb(78, 84, 200), rgb(143, 148, 251));
+            font-family: sans-serif;
 
-            }
-            .addbtn{
-                background-color: steelblue;
-                border: 0;
-                color: #fff;
-            }
-            .addbtn:disabled{
-                background-color: #999;
-                cursor: not-allowed;
-            }
-            .form-control:focus,.addbtn:focus{
-                outline: 0;
-            }
-            .joblist{
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
-                margin-top: 5px;
-            }
-            .joblist-item{
-                background-color: #ddd;
-                border-bottom: 1px solid #aaa;
-                color: blue;
-                padding: 10px;
-            }
-        </style>
-    </head>
-    <body>
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        <div class="container">
-            <h2>TODO LIST</h2>
-            <form action="" method="">
-                <div class="form-group">
-                    <input type="text" name="todojob" id="todojob" class="form-control" placeholder=""/>
-                    <button type="submit" class="addbtn" disabled>Add New Job</button>
-                </div>
-            </form>
-            <ul class="joblist">
-                <!-- <li class="joblist-item">Have to cook</li>
+        .container {
+            background-color: #eee;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: darkblue;
+            padding: 0;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+        }
+
+        .form-control {
+            color: blue;
+            font-size: 16px;
+            padding: 5px;
+
+        }
+
+        .addbtn {
+            background-color: steelblue;
+            border: 0;
+            color: #fff;
+        }
+
+        .addbtn:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        .form-control:focus,
+        .addbtn:focus {
+            outline: 0;
+        }
+
+        .joblist {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            margin-top: 5px;
+        }
+
+        .joblist-item {
+            background-color: #ddd;
+            border-bottom: 1px solid #aaa;
+            color: blue;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>TODO LIST</h2>
+        <form action="" method="">
+            <div class="form-group">
+                <input type="text" name="todojob" id="todojob" class="form-control" placeholder="" />
+                <button type="submit" class="addbtn" disabled>Add New Job</button>
+            </div>
+        </form>
+        <ul class="joblist">
+            <!-- <li class="joblist-item">Have to cook</li>
                 <li class="joblist-item">Have to cook</li> -->
-            </ul>
-        </div>
-        
+        </ul>
+    </div>
 
-        <script src="../libs/jquery-3.6.0.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
+
+    <script src="../libs/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
             $(document).ready(function(){
                 // console.log('hi');
 
                 $('#todojob').keyup(function(){
-                    var gettodojob = jQuery.trim($(this).val());
+                    var gettodojobel = jQuery.trim($(this).val());
 
-                    if(gettodojob === ''){
+                    if(gettodojobel === ''){
                         $('.addbtn').attr('disabled','true');
-                        window.alert('Enter New Job');
                     }else{
                         $('.addbtn').removeAttr('disabled');
                     }
                 });
 
                 $('form').submit(function(e){
-                    // console.log('i am working');
 
-                    // if()
+                        if(window.confirm("Are you sure to add new job?")){
+                            $('.joblist').append(`<li class="joblist-item">${$('#todojob').val()}</li>`);
+                        }else{
+                            window.alert("New Job Canceled");
+                        }
+                        $('#todojob').val('').focus();
+                        $('.addbtn').attr('disabled','true');//button still enable when todojob input empty so I give disabled.
 
 
-                    e.preventDefault();
+                        e.preventDefault();
                 });
 
             });
-        </script>
-    </body>
+
+
+
+
+
+            // WITH JS
+                // var gettodojobel = document.querySelector('#todojob');
+                // var addbtn = document.querySelector('.addbtn');
+                // var form = document.querySelector('form');
+                // var joblist = document.querySelector('.joblist');
+                
+                // gettodojobel.addEventListener('keyup',function(){
+                //     // console.log(gettodojobel.value.trim());
+                //     if(gettodojobel.value.trim() === ''){
+                //         addbtn.setAttribute('disabled','true');
+                //     }else{
+                //         addbtn.removeAttribute('disabled');
+                //     }
+                // });
+                
+                // form.addEventListener('submit',function(e){
+                //         e.preventDefault();
+                //         if(window.confirm('Are you sure to add new job?')){
+                //             // console.log(joblist);
+                //             var joblistItem = document.createElement('li');
+                //             joblistItem.innerHTML = `<li class="joblist-item">${gettodojobel.value}</li>`;
+                //             joblist.appendChild(joblistItem);
+                //         }else{
+                //             window.alert('New Job Cancled');
+                //         }
+                //         gettodojobel.focus();
+                //         gettodojobel.value = '';
+                //         addbtn.setAttribute('disabled','true');
+                        
+                // });
+    </script>
+</body>
+
 </html>

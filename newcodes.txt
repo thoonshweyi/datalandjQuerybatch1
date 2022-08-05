@@ -10,8 +10,13 @@ border-collapse: collapse; // at table for tr border-bottom
 
 JS
 navigator.clipboard.writeText(getinput.val()); //for copy clipboard
+javascript:void(0); //for no hash in addressbar
 
 JQuery
 $('#datatable tr').filter(function(){
 	$(this).toggle($(this).children(':eq(0)').text().toLowerCase().indexOf(getinput) > -1);
 });
+
+ //insertBefore
+ $(expboxes).insertAfter($('.expboxes').last());
+
