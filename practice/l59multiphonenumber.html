@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add New Contact</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style type="text/css">
+            *{
+                box-sizing: border-box;
+            }
+            body{
+                height: 100vh;
+                font-family: sans-serif;
+                background-color: #111;
+
+                display: grid;
+                place-items: center;
+            }
+            .container{
+                width: 400px;
+                background-color: #333;
+                border-radius: 20px;
+                color: #f4f4f4;
+
+                padding: 20px;
+            }
+            .container h1{
+                text-align: center;
+            }
+            .form-group{
+                margin: 20px 0px;
+            }
+            .form-group label{
+                display: block;
+                margin-bottom: 10px;
+            }
+            .form-control{
+                display: block;
+                width: 95%;
+                border: 0;
+                border-bottom: 1px solid #eee;
+                background-color: transparent;
+                color: #fff;
+                font-size: 14px;
+
+                padding: 5px;
+                margin-left: auto;
+
+                transition: border-bottom 0.4s;
+            }
+            .form-control:focus{
+                border-bottom: 1px solid orange;
+                outline: 0;
+            }
+            .phonebox{
+                position: relative;
+            }
+            .phoneaddbtn{
+                background: transparent;
+                border: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                cursor: pointer;
+            }
+            .phoneaddbtn:disabled{
+                color: #888;
+                cursor: not-allowed;
+            }
+            .phoneaddbtn{
+                text-decoration: none;
+                color: lightgreen;
+            }
+            .removebtn{
+                color: red;
+            }
+            .newphone{
+                display: flex;
+                width: 95%;
+                margin-left: auto;
+            }
+            .savebtn{
+                width: 100%;
+                border: 0;
+                background-color: #fff;
+                border-radius: 5px;
+                font-size: 16px;
+                padding: 10px;
+                cursor: pointer;
+
+                transition: all 0.5s;
+            }
+            .savebtn:hover{
+                background-color: lightgreen;
+                /* color: #fff; */
+            }
+        </style>
+    </head>
+    <body>
+        
+        <div class="container">
+            <h1>Add New Contact</h1>
+
+            <form action="" method="">
+                <!-- <div class="pfimg"><i class="fas fa-camera"></i></div> -->
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Name"/>
+                </div>
+                
+                <div class="form-group phonebox">
+                    <label for="phone1">
+                        <span><i class="fas fa-phone"></i> Phone</span>
+                    </label>
+                    <button class="phoneaddbtn"><i class="fas fa-plus"></i></button>
+                    <input type="text" name="phone" id="phone1" class="form-control" placeholder="Phone"/>
+
+                    <!-- <div class="form-group newphone">
+                        <input type="text" name="phone" id="phone1" class="form-control" placeholder="Phone"/>
+                        <a href="javascript:void(0);" title="Remove" class="removebtn"><i class="fas fa-minus"></i></a>
+                    </div>
+                    <div class="form-group newphone">
+                        <input type="text" name="phone" id="phone1" class="form-control" placeholder="Phone"/>
+                        <a href="javascript:void(0);" title="Remove" class="removebtn"><i class="fas fa-minus"></i></a>
+                    </div> -->
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="text" name="email" id="email" class="form-control" placeholder="Email"/>
+                </div>
+                <div class="form-group">
+                    <label for="workinfo"><i class="fas fa-building"></i> Work Info</label>
+                    <input type="text" name="workinfo" id="workinfo" class="form-control" placeholder="Name"/>
+                </div>
+                <button type="submit" class="savebtn">Save</button>
+            </form>
+
+
+        </div>
+
+
+        <script type="text/javascript">
+            var getaddbtnn = document.querySelector('.phoneaddbtn');
+            var phonebox = document.querySelector('.phonebox');
+
+            var max = 3;
+            var current = 1;
+
+            getaddbtnn.addEventListener('click',function(e){
+                // console.log("I am working");
+                current++;
+                if(current < max){
+                    addnewphone();
+                }else if(current === max){
+                    addnewphone();
+                    this.disabled = 'true';
+                }
+                e.preventDefault();
+                console.log(current);
+            });
+
+            function addnewphone(){
+
+                    const newphone = document.createElement('div');
+                    newphone.innerHTML = `
+                        <input type="text" name="phone" id="phone${current}" class="form-control" placeholder="Phone"/>
+                        <a href="javascript:void(0);" title="Remove" class="removebtn"><i class="fas fa-minus"></i></a>
+                    `;
+                    newphone.className = 'form-group newphone';
+                    phonebox.appendChild(newphone);
+
+
+                    var removebtn = newphone.querySelector('.removebtn');
+                    removebtn.addEventListener('click',function(){
+                        this.parentElement.remove();
+                        current--;
+                        console.log(current);
+                        getaddbtnn.removeAttribute('disabled');
+                    });
+            }
+        </script>
+    </body>
+</html>
